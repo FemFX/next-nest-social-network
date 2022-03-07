@@ -1,4 +1,5 @@
 import { Column, Entity, OneToMany } from "typeorm";
+import { Comment } from "./Comment";
 import { Initial } from "./initial/Initial";
 import { Post } from "./Post";
 
@@ -30,4 +31,6 @@ export class User extends Initial {
   };
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
+  @OneToMany(() => Comment, (comment) => comment.user, { nullable: true })
+  comments: Comment[];
 }

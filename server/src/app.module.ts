@@ -10,12 +10,14 @@ import { FileModule } from "./file/file.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import * as path from "path";
 import { ConfigModule } from "@nestjs/config";
+import { Comment } from "./entity/Comment";
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, "static"),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: path.resolve(__dirname, "static"),
+    // }),
     ConfigModule.forRoot({
       envFilePath: ".env",
     }),
@@ -29,12 +31,13 @@ import { ConfigModule } from "@nestjs/config";
       database: "reddit",
       synchronize: true,
       logging: true,
-      entities: [User, Post],
+      entities: [User, Post, Comment],
       migrations: ["src/migration/**/*.ts"],
       subscribers: ["src/subscriber/**/*.ts"],
     }),
     PostModule,
     FileModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,5 @@
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { Comment } from "./Comment";
 import { Initial } from "./initial/Initial";
 import { User } from "./User";
 
@@ -24,11 +25,13 @@ export class Post extends Initial {
     default: 0,
   })
   views: number;
-  @Column({
-    nullable: false,
-  })
-  image: string;
+  // @Column({
+  //   nullable: false,
+  // })
+  // image: string;
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn()
   user: User;
+  @OneToMany(() => Comment, (comment) => comment.post, { nullable: true })
+  comments: Comment[];
 }

@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Post } from "src/entity/Post";
 import { FileService } from "src/file/file.service";
+import { ILike, Like } from "typeorm";
 import { CreatePostDto } from "./dto/create-post.dto";
 
 @Injectable()
@@ -10,15 +11,15 @@ export class PostService {
     @InjectRepository(Post) private postService: typeof Post,
     private fileService: FileService
   ) {}
-  async create(createPostDto: CreatePostDto, image: any): Promise<Post> {
-    const { text, title, user } = createPostDto;
-    const fileName = await this.fileService.createFile(image);
+  async create(createPostDto: CreatePostDto, image: any, req): Promise<Post> {
+    const { text, title } = createPostDto;
+    // const fileName = await this.fileService.createFile(image);
     const post = await this.postService.create({
       title,
       text,
-      image: fileName,
+      // image: fileName,
     });
-    post.user = user;
+    post.user = req.user.id;
     post.save();
     return post;
   }
@@ -35,6 +36,19 @@ export class PostService {
     const posts = await this.postService
       .createQueryBuilder("post")
       .leftJoinAndSelect("post.user", "user")
+      .leftJoinAndSelect("post.comments", "comments")
+      .orderBy("post.id", "DESC")
+      .getMany();
+    return posts;
+  }
+  async search(query: string): Promise<Post[]> {
+    // const posts = await this.postService.find({
+    //   where: { title: ILike(`%${query}%`)},
+    // });
+    const posts = await this.postService
+      .createQueryBuilder("post")
+      .where({ title: ILike(`%${query}%`) })
+      .orWhere({ text: ILike(`%${query}%`) })
       .getMany();
     return posts;
   }
