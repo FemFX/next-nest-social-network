@@ -1,0 +1,16 @@
+@import "../../variables.scss";
+
+.card {
+  width: 30%;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.text-center {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+.params {
+  display: flex;
+  justify-content: space-around;
+}

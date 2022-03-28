@@ -1,0 +1,35 @@
+@import "../../variables.scss";
+
+.button {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 10px 25px 10px 25px;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.primary {
+  color: #fff;
+  background-color: $primary;
+  //   &:hover {
+  //     background: $primaryHover;
+  //   }
+  svg {
+    fill: #fff;
+  }
+}
+.outlined {
+  color: $primary;
+  background: none;
+  border: 3px solid $primary;
+  //   &:hover {
+  //     color: #fff;
+  //     background-color: $primary;
+  //     svg {
+  //       fill: #fff;
+  //     }
+  //   }
+}
