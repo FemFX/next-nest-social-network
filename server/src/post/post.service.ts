@@ -52,4 +52,8 @@ export class PostService {
       .getMany();
     return posts;
   }
+  async findPost(id): Promise<Post> {
+    const post = await this.postService.findOne(id);
+    return post;
+  }
 }

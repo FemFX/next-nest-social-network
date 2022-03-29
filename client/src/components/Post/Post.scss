@@ -1,16 +1,19 @@
 @import "../../variables.scss";
 
 .card {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 30%;
   background: #fff;
-  margin-bottom: 10px;
-}
-.text-center {
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: black;
 }
 .params {
   display: flex;
   justify-content: space-around;
+}
+a {
+  text-decoration: none;
 }

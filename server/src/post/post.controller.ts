@@ -51,8 +51,12 @@ export class PostController {
   ) {
     return this.commentService.create(createCommentDto, +id, req);
   }
-  @Get("search")
-  search(@Query("query") query: string) {
+  @Post("search")
+  search(@Body("query") query: string) {
     return this.postService.search(query);
+  }
+  @Get("/:id")
+  findById(@Param("id") id) {
+    return this.postService.findPost(id);
   }
 }

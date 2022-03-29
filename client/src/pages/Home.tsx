@@ -16,8 +16,12 @@ const Home = () => {
         <div>Loading...</div>
       ) : (
         <>
-          <span>New Posts</span>
-          <div>{!loading && posts.map((post) => <Post {...post} />)}</div>
+          <span className="text-center" style={{ marginLeft: "-340px"  }}>
+            New Posts
+          </span>
+          <div>
+            {!loading && posts.map((post) => <Post key={post.id} {...post} />)}
+          </div>
         </>
       )}
     </div>
