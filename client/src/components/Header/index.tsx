@@ -28,7 +28,7 @@ const Header = () => {
   };
   return (
     <header>
-      <Link to={"/"} className="">
+      <Link to={"/"} className="title">
         Reddit
       </Link>
       <div>
@@ -42,12 +42,24 @@ const Header = () => {
         />
       </div>
       <div>
-        <Button appearence="outlined">Log In</Button>
+        <Link to={`/login`}>
+          <Button appearence="outlined">Log In</Button>
+        </Link>
       </div>
       <div>
-        <Button appearence="primary">Sign Up</Button>
+        <Link to={`/register`}>
+          <Button appearence="primary">Sign Up</Button>
+        </Link>
       </div>
-      <div>Profile</div>
+      <div>
+        <img
+          src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png"
+          alt="Profile"
+          width={50}
+          height={50}
+          className="profile_img"
+        />
+      </div>
     </header>
   );
 };

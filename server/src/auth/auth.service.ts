@@ -35,6 +35,17 @@ export class AuthService {
     newUser.save();
     return this.generateToken(newUser);
   }
+  async getUserById(id: number): Promise<User> {
+    try {
+      const data: string = Object.keys(id)[0];
+      const user = await this.userRepository.findOne({
+        id: +data,
+      });
+      return user;
+    } catch (err) {
+      console.log(err);
+    }
+  }
   async generateToken(user: User) {
     const payload = { email: user.email, id: user.id };
     return {
@@ -44,8 +55,11 @@ export class AuthService {
   private async validateUser(userDto: CreateUserDto | LoginUserDto) {
     const { email } = userDto;
     const user = await this.userRepository.findOne({ email });
-    const passworEquals = await bcrypt.compare(userDto.password, user.password);
-    if (user && passworEquals) {
+    const passwordEquals = await bcrypt.compare(
+      userDto.password,
+      user.password
+    );
+    if (user && passwordEquals) {
       return user;
     }
     throw new HttpException(
@@ -53,5 +67,4 @@ export class AuthService {
       HttpStatus.FORBIDDEN
     );
   }
-
 }

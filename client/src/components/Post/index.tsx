@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { IPost } from "../../types/post";
 import PostPage from "../../pages/Post";
+import { axios } from "../../utils/axios";
 import "./Post.scss";
 
 const Post: React.FC<IPost> = ({
@@ -15,6 +16,15 @@ const Post: React.FC<IPost> = ({
   views,
   id,
 }): JSX.Element => {
+  const like = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    axios.get(`http://localhost:4000/post/${id}/like`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+  };
   return (
     <Link to={`/post/${id}`}>
       <div className="card">
@@ -24,7 +34,7 @@ const Post: React.FC<IPost> = ({
         </div>
         <span>{text}</span>
         <div className="params">
-          <div>
+          <div onClick={like}>
             <img
               src="https://image.similarpng.com/very-thumbnail/2020/11/Black-Like-icon-design-illustration-on-transparent-background-PNG.png"
               alt="Like"

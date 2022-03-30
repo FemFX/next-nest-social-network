@@ -13,6 +13,9 @@ export class AuthController {
   @Post("register")
   register(@Body() dto: CreateUserDto) {
     return this.authService.register(dto);
-  }  
-  //  
+  }
+  @Post("")
+  getUserById(@Body() id: number) {
+    return this.authService.getUserById(id);
+  }
 }

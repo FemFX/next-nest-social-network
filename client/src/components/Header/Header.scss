@@ -1,4 +1,9 @@
 @import "../../variables.scss";
+.title {
+  font-weight: bold;
+  font-size: 28px;
+}
+
 header {
   padding-top: 5px;
   padding-left: 10px;
@@ -10,6 +15,7 @@ header {
   justify-content: space-between;
 }
 .search {
+  margin-top: 0;
   width: 400px;
   padding: 10px 0 10px 0;
   border-radius: 10px;
@@ -23,4 +29,7 @@ header {
   &:focus {
     border: 1px solid black;
   }
+}
+.profile_img {
+  margin-right: 15px;
 }

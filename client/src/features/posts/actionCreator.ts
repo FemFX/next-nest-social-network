@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axios } from "../../utils/axios";
 import { IPost } from "../../types/post";
 
 export const fetchPostsAction = createAsyncThunk(
-  "user/fetch",
+  "posts/fetch",
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get<IPost[]>("http://localhost:4000/post");

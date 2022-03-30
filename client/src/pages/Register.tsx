@@ -1,7 +1,11 @@
-import React from "react";
+import Form from "../components/Form";
 
-const Register = () => {
-  return <div>Register</div>;
+const Register: React.FC = (): JSX.Element => {
+  return (
+    <>
+      <Form text="Register" isRegister />
+    </>
+  );
 };
 
 export default Register;
